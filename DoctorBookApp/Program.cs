@@ -16,6 +16,9 @@ namespace DoctorBookApp
             builder.Services.AddScoped<ICustomerManager, CustomerManager>();
             builder.Services.AddScoped<IDoctorManager, DoctorManager>();
 
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -21,12 +21,17 @@ namespace DoctorBookApp.Entities.DbContexts
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=IstkaCompanyInfo;Trusted_Connection=true;
-            //TrustServerCertificate=true");
+            base.OnConfiguring(optionsBuilder);
+            var connectionString = "Server=localhost;Database=DoctorBookAppDb;Uid=root;Pwd=Password0*";
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
     }
 }
