@@ -1,3 +1,6 @@
+using DoctorBookApp.BL.Manager.Abstract;
+using DoctorBookApp.BL.Manager.Concrete;
+
 namespace DoctorBookApp
 {
     public class Program
@@ -8,6 +11,10 @@ namespace DoctorBookApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IAppointmentManager, AppointmentManager>();
+            builder.Services.AddScoped<ICustomerManager, CustomerManager>();
+            builder.Services.AddScoped<IDoctorManager, DoctorManager>();
 
             var app = builder.Build();
 
