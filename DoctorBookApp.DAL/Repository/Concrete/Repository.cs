@@ -19,14 +19,7 @@ namespace DoctorBookApp.DAL.Repository.Concrete
 
         public virtual int Insert(T input)
         {
-            /*
-             * Burada ki Set<T> metodu 
-             * dbcontext uzerindeki tanimli olan DbSet<T> propertiy'sine 
-             * konumlanir
-             * 
-             */
             _dbContext.Set<T>().Add(input);
-            // _dbContext.Urunler.Add(input);
             return _dbContext.SaveChanges();
         }
 
