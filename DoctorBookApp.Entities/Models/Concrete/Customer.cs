@@ -6,5 +6,7 @@ namespace DoctorBookApp.Entities.Models.Concrete
     {
         public int Age { get; set; }
         public bool Gender { get; set; }
+        public int NationalId { get; set; }
+        public int PhoneNumber { get; set; }
     }
 }
