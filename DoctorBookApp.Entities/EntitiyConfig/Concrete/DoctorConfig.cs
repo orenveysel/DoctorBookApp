@@ -11,7 +11,7 @@ namespace DoctorBookApp.Entities.EntitiyConfig.Concrete
             base.Configure(builder);
             builder.Property(p => p.Name).HasMaxLength(50);
             builder.Property(p => p.LastName).HasMaxLength(50);
-            builder.HasData(new Doctor { Id = Guid.NewGuid(), Name = "Ali", LastName = "Veli" });
+            builder.HasData(new Doctor { Id = 1, Name = "Ali", LastName = "Veli" });
         }
     }
 }
