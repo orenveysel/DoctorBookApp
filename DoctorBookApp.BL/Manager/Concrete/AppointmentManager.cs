@@ -6,10 +6,30 @@ namespace DoctorBookApp.BL.Manager.Concrete
     public class AppointmentManager : ManagerBase<Appointment>, IAppointmentManager
     {
         private readonly ICustomerManager _customerManager;
-        public AppointmentManager(ICustomerManager customerManager)
+        private readonly IAppointmentManager _appointmentManager;
+        public AppointmentManager(ICustomerManager customerManager, IAppointmentManager appointmentManager)
         {
             _customerManager = customerManager;
+            _appointmentManager = appointmentManager;
         }
+
+        public int CancelAppointment(int id)
+        {
+            var customerAppointment = base.GetById(id);
+            if (customerAppointment != null)
+            {
+                customerAppointment.IsCanceled = true;
+                return base.Insert(customerAppointment);
+            }
+            return 0;
+        }
+
+        public List<Appointment> GetAllAppointmentsByCustomerId(int id)
+        {
+            var data = _appointmentManager.GetAllAppointmentsByCustomerId(id);
+            return data;
+        }
+
         public override int Insert(Appointment input)
         {
             var customer  = _customerManager.IsThereAnyCustomer(input.Customer.NationalId);
