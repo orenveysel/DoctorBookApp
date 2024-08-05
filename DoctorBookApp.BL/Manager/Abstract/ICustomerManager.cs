@@ -2,7 +2,7 @@
 
 namespace DoctorBookApp.BL.Manager.Abstract
 {
-    public interface ICustomerManager
+    public interface ICustomerManager : IManagerBase<Customer>
     {
         Customer IsThereAnyCustomer(int nationalId);
 

@@ -1,5 +1,7 @@
 using DoctorBookApp.BL.Manager.Abstract;
 using DoctorBookApp.BL.Manager.Concrete;
+using DoctorBookApp.Entities.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoctorBookApp
 {
@@ -9,14 +11,17 @@ namespace DoctorBookApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IAppointmentManager, AppointmentManager>();
             builder.Services.AddScoped<ICustomerManager, CustomerManager>();
             builder.Services.AddScoped<IDoctorManager, DoctorManager>();
+            builder.Services.AddDbContext<AppDbContext>(option => option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            
 
 
             var app = builder.Build();
