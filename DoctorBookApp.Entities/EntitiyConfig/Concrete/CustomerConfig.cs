@@ -11,11 +11,9 @@ namespace DoctorBookApp.Entities.EntitiyConfig.Concrete
         {
             base.Configure(builder);
             builder.Property(p => p.FirstName)
-                   .IsRequired()
                    .HasMaxLength(50);
 
             builder.Property(p => p.LastName)
-                   .IsRequired()
                    .HasMaxLength(50);
 
             builder.Property(p => p.BirthDate).HasColumnType("date");
@@ -29,11 +27,9 @@ namespace DoctorBookApp.Entities.EntitiyConfig.Concrete
                    .IsFixedLength(); // Sabit uzunluklu telefon numarası formatı
 
             builder.Property(p => p.Email)
-                   .IsRequired()
                    .HasMaxLength(100);
 
             builder.Property(p => p.Password)
-                   .IsRequired()
                    .HasMaxLength(256);
         }
     }

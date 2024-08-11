@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorBookApp.Entities", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorBookApp.DAL", "DoctorBookApp.DAL\DoctorBookApp.DAL.csproj", "{B6C9A473-DF5F-4700-ACFA-71FE99BF0126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorBookApp.BL", "DoctorBookApp.BL\DoctorBookApp.BL.csproj", "{F9D8049F-1DA4-43E9-A800-E0FEA26315CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorBookApp.BL", "DoctorBookApp.BL\DoctorBookApp.BL.csproj", "{F9D8049F-1DA4-43E9-A800-E0FEA26315CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
