@@ -31,7 +31,7 @@ namespace DoctorBookApp.WebMvc.Controllers
                 if (customer != null)
                 {
                     // Oturum açma işlemi
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Appointment");
                 }
 
                 ModelState.AddModelError("", "Invalid login attempt.");
