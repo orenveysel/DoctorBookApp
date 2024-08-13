@@ -51,31 +51,26 @@ namespace DoctorBookApp.WebMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_context.Customers.Any(c => c.Email == model.Email))
+                if (!_context.Customers.Any(c => c.NationalId == model.NationalId))
                 {
-                    if (!_context.Customers.Any(c => c.NationalId == model.NationalId))
+                    var customer = new Customer
                     {
-                        var customer = new Customer
-                        {
-                            FirstName = model.FirstName,
-                            LastName = model.LastName,
-                            Email = model.Email,
-                            Password = model.Password, // Şifre hashleme eklenecek
-                            BirthDate = model.BirthDate,
-                            Gender = model.Gender,
-                            NationalId = model.NationalId,
-                            PhoneNumber = model.PhoneNumber
-                        };
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        Password = model.Password, // Şifre hashleme eklenecek
+                        BirthDate = model.BirthDate,
+                        Gender = model.Gender,
+                        NationalId = model.NationalId,
+                        PhoneNumber = model.PhoneNumber
+                    };
 
-                        _context.Customers.Add(customer);
-                        _context.SaveChanges();
+                    _context.Customers.Add(customer);
+                    _context.SaveChanges();
 
-                        return RedirectToAction("Login", "Account");
-                    }
-                    ModelState.AddModelError("NationalId", "This NationalId is already registered.");
-
+                    return RedirectToAction("Login", "Account");
                 }
-                ModelState.AddModelError("Email", "This email is already registered.");
+                ModelState.AddModelError("NationalId", "This NationalId is already registered.");
             }
 
             return View(model);
