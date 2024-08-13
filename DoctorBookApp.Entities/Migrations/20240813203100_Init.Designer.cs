@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorBookApp.Entities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240804193234_init")]
-    partial class init
+    [Migration("20240813203100_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,27 +65,43 @@ namespace DoctorBookApp.Entities.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("date");
 
-                    b.Property<bool>("Gender")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Name")
+                    b.Property<long>("NationalId")
+                        .HasMaxLength(11)
+                        .HasColumnType("bigint")
+                        .IsFixedLength();
+
+                    b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
-                    b.Property<int>("NationalId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<long>("PhoneNumber")
+                        .HasMaxLength(10)
+                        .HasColumnType("bigint")
+                        .IsFixedLength();
 
                     b.HasKey("Id");
 
@@ -100,12 +116,12 @@ namespace DoctorBookApp.Entities.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
@@ -118,15 +134,21 @@ namespace DoctorBookApp.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            LastName = "Veli",
-                            Name = "Ali"
+                            FirstName = "Ali",
+                            LastName = "Yilmaz"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstName = "Ayse",
+                            LastName = "Ozturk"
                         });
                 });
 
             modelBuilder.Entity("DoctorBookApp.Entities.Models.Concrete.Appointment", b =>
                 {
                     b.HasOne("DoctorBookApp.Entities.Models.Concrete.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -140,6 +162,11 @@ namespace DoctorBookApp.Entities.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("DoctorBookApp.Entities.Models.Concrete.Customer", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 
             modelBuilder.Entity("DoctorBookApp.Entities.Models.Concrete.Doctor", b =>
