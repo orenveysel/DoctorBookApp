@@ -53,21 +53,29 @@ namespace DoctorBookApp.WebMvc.Controllers
             {
                 if (!_context.Customers.Any(c => c.Email == model.Email))
                 {
-                    var customer = new Customer
+                    if (!_context.Customers.Any(c => c.NationalId == model.NationalId))
                     {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        Email = model.Email,
-                        Password = model.Password // Şifre hashleme eklenecek
-                                                  // Diğer gerekli özellikler
-                    };
+                        var customer = new Customer
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.Email,
+                            Password = model.Password, // Şifre hashleme eklenecek
+                            BirthDate = model.BirthDate,
+                            Gender = model.Gender,
+                            NationalId = model.NationalId,
+                            PhoneNumber = model.PhoneNumber
+                        };
 
-                    _context.Customers.Add(customer);
-                    _context.SaveChanges();
+                        _context.Customers.Add(customer);
+                        _context.SaveChanges();
 
-                    return RedirectToAction("Login", "Account");
+                        return RedirectToAction("Login", "Account");
+                    }
+                    ModelState.AddModelError("NationalId", "This NationalId is already registered.");
+
                 }
-                ModelState.AddModelError("", "This email is already registered.");
+                ModelState.AddModelError("Email", "This email is already registered.");
             }
 
             return View(model);

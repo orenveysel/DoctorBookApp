@@ -5,7 +5,7 @@ namespace DoctorBookApp.Entities.Models.Concrete
     public class Customer : Person
     {
         public DateTime BirthDate { get; set; }
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
         public int NationalId { get; set; }
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
