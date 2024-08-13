@@ -30,24 +30,24 @@ namespace DoctorBookApp.BL.Manager.Concrete
             return appointmentManager?.GetAllAppointmentsByCustomerId(id);
         }
 
-        public override int Insert(Appointment input)
-        {
-            var customerManager = _serviceProvider.GetService<ICustomerManager>();
-            var customer = customerManager?.IsThereAnyCustomer(input.Customer.NationalId);
-            if (customer == null)
-            {
-                input.CustomerId = customerManager.CreateCustomer(input.Customer);
-            }
-            else
-            {
-                input.CustomerId = customer.Id;
-            }
+        //public override int Insert(Appointment input)
+        //{
+        //    var customerManager = _serviceProvider.GetService<ICustomerManager>();
+        //    var customer = customerManager?.IsThereAnyCustomer(input.Customer.NationalId);
+        //    if (customer == null)
+        //    {
+        //        input.CustomerId = customerManager.CreateCustomer(input.Customer);
+        //    }
+        //    else
+        //    {
+        //        input.CustomerId = customer.Id;
+        //    }
 
-            var doctor = base.GetById(input.Doctor.Id);
-            if (doctor != null) { input.DoctorId = doctor.Id; }
+        //    var doctor = base.GetById(input.Doctor.Id);
+        //    if (doctor != null) { input.DoctorId = doctor.Id; }
 
-            return base.Insert(input);
-        }
+        //    return base.Insert(input);
+        //}
     }
 }
 

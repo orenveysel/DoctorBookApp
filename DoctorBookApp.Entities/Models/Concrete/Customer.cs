@@ -6,8 +6,8 @@ namespace DoctorBookApp.Entities.Models.Concrete
     {
         public DateTime BirthDate { get; set; }
         public string Gender { get; set; }
-        public int NationalId { get; set; }
-        public int PhoneNumber { get; set; }
+        public long NationalId { get; set; }
+        public long PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
