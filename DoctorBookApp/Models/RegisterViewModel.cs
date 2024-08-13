@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DoctorBookApp.BL.Manager.Concrete;
+using System.ComponentModel.DataAnnotations;
 
 namespace DoctorBookApp.WebMvc.Models
 {
@@ -9,6 +10,7 @@ namespace DoctorBookApp.WebMvc.Models
         public long NationalId { get; set; }
 
         [Display(Name = "Birth Date")]
+        [DateNotInFuture(ErrorMessage = "Birth date cannot be in the future.")]
         public DateTime BirthDate { get; set; }
 
         [Display(Name = "First Name")]

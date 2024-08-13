@@ -1,9 +1,40 @@
 ﻿using DoctorBookApp.BL.Manager.Abstract;
 using DoctorBookApp.Entities.Models.Concrete;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.DataAnnotations;
 
 namespace DoctorBookApp.BL.Manager.Concrete
 {
+    public class DateNotInFutureAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value is DateTime date)
+            {
+                if (date > DateTime.Now)
+                {
+                    return new ValidationResult("Birth date cannot be in the future.");
+                }
+            }
+            return ValidationResult.Success;
+        }
+    }
+
+    public class DateNotInPastAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value is DateTime date)
+            {
+                if (date < DateTime.Now)
+                {
+                    return new ValidationResult("Birth date cannot be in the past.");
+                }
+            }
+            return ValidationResult.Success;
+        }
+    }
+
     public class CustomerManager : ManagerBase<Customer>, ICustomerManager
     {
         private readonly IServiceProvider _serviceProvider;
