@@ -27,7 +27,7 @@ namespace DoctorBookApp.WebMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var customer = _context.Customers.SingleOrDefault(c => c.Email == model.Email && c.Password == model.Password);
+                var customer = _context.Customers.SingleOrDefault(c => c.NationalId == model.NationalId && c.Password == model.Password);
                 if (customer != null)
                 {
                     // Oturum açma işlemi
