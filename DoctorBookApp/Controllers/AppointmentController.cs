@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DoctorBookApp.BL.Manager.Abstract;
 using DoctorBookApp.Entities.Models.Concrete;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace DoctorBookApp.Controllers
 {

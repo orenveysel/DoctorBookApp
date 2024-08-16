@@ -2,6 +2,7 @@ using DoctorBookApp.BL.Manager.Abstract;
 using DoctorBookApp.BL.Manager.Concrete;
 using DoctorBookApp.Entities.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DoctorBookApp
 {
@@ -20,6 +21,8 @@ namespace DoctorBookApp
             builder.Services.AddScoped<ICustomerManager, CustomerManager>();
             builder.Services.AddScoped<IDoctorManager, DoctorManager>();
             builder.Services.AddDbContext<AppDbContext>(option => option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>();
 
             
 

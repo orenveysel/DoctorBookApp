@@ -1,10 +1,11 @@
 ﻿using DoctorBookApp.Entities.Models.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace DoctorBookApp.Entities.DbContexts
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext
     {
 
         public DbSet<Doctor> Doctors { get; set; }
