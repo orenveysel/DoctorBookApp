@@ -40,11 +40,11 @@
         <select asp-for="DoctorId" class="form-control" asp-items="@(new SelectList(ViewBag.Doctors, "Id", "FirstName"))"></select>
         <span asp-validation-for="DoctorId" class="text-danger"></span>
     </div>
-    <div class="form-group">
+@*     <div class="form-group">
         <label>Customer</label>
         <input type="text" class="form-control" value="@ViewBag.CustomerName" readonly />
         <input type="hidden" asp-for="CustomerId" value="@ViewBag.CustomerId" />
-    </div>
+    </div> *@
 
     @* <div class="form-group">
         <label asp-for="CustomerId" class="control-label"></label>

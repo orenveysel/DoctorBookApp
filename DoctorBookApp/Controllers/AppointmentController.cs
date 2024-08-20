@@ -4,8 +4,8 @@ using DoctorBookApp.Entities.Models.Concrete;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-//using DoctorBookApp.WebMvc.Models;
-//using Microsoft.AspNetCore.Identity;
+using DoctorBookApp.WebMvc.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace DoctorBookApp.Controllers
 {
@@ -47,7 +47,7 @@ namespace DoctorBookApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                appointment.CustomerId = Int32.Parse(User.Identity.Name);
                 _appointmentManager.Insert(appointment);
                 return RedirectToAction("Index");
             }
