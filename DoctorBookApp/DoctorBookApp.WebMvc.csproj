@@ -24,4 +24,9 @@
     <ProjectReference Include="..\DoctorBookApp.BL\DoctorBookApp.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\Customer\" />
+  </ItemGroup>
+
 </Project>
