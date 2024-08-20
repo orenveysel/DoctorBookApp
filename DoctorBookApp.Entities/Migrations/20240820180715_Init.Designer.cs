@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorBookApp.Entities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240819205507_Init")]
+    [Migration("20240820180715_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -354,20 +354,23 @@ namespace DoctorBookApp.Entities.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("City")
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostalCode")
+                    b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("State")
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("longtext");
+                    b.Property<long>("NationalId")
+                        .HasColumnType("bigint");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
