@@ -9,10 +9,9 @@ namespace DoctorBookApp.Entities.EntitiyConfig.Concrete
         public override void Configure(EntityTypeBuilder<Doctor> builder)
         {
             base.Configure(builder);
-            builder.Property(p => p.FirstName).HasMaxLength(50);
-            builder.Property(p => p.LastName).HasMaxLength(50);
-            builder.HasData(new Doctor { Id = 1, FirstName = "Ali", LastName = "Yilmaz" });
-            builder.HasData(new Doctor { Id = 2, FirstName = "Ayse", LastName = "Ozturk" });
+            builder.Property(p => p.FullName).HasMaxLength(50);
+            builder.HasData(new Doctor { Id = 1, FullName = "Ali Yilmaz" });
+            builder.HasData(new Doctor { Id = 2, FullName = "Ayse Ozturk" });
         }
     }
 }

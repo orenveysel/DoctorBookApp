@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorBookApp.Entities.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240820180715_Init")]
+    [Migration("20240924121023_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace DoctorBookApp.Entities.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -116,12 +116,7 @@ namespace DoctorBookApp.Entities.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
@@ -134,14 +129,12 @@ namespace DoctorBookApp.Entities.Migrations
                         new
                         {
                             Id = 1,
-                            FirstName = "Ali",
-                            LastName = "Yilmaz"
+                            FullName = "Ali Yilmaz"
                         },
                         new
                         {
                             Id = 2,
-                            FirstName = "Ayse",
-                            LastName = "Ozturk"
+                            FullName = "Ayse Ozturk"
                         });
                 });
 

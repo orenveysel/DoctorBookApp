@@ -113,9 +113,7 @@ namespace DoctorBookApp.Entities.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    FullName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -283,11 +281,11 @@ namespace DoctorBookApp.Entities.Migrations
 
             migrationBuilder.InsertData(
                 table: "Doctors",
-                columns: new[] { "Id", "FirstName", "LastName" },
+                columns: new[] { "Id", "FullName" },
                 values: new object[,]
                 {
-                    { 1, "Ali", "Yilmaz" },
-                    { 2, "Ayse", "Ozturk" }
+                    { 1, "Ali Yilmaz" },
+                    { 2, "Ayse Ozturk" }
                 });
 
             migrationBuilder.CreateIndex(
